@@ -1,0 +1,5 @@
+for FILE in `git ls-files`; do
+  TIME=`git log --pretty=format:%ci -n1 ${FILE} | sed -e "s/\([+-][0-9]\{2\}\)00$/\1:00/"`
+  echo -e "${TIME}\t${FILE}"
+  touch -t "${TIME}" ${FILE}
+done
